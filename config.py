@@ -25,7 +25,7 @@ WEATHER_ICON_URL = "http://openweathermap.org/img/wn/"
 
 
 # ----- TESLA API --------#
-TESLA_IMG = '/home/pi/progging/MagicMirror/images/tesla.jpg'
+TESLA_IMG = '/home/pi/github/magic_mirror/images/tesla.jpg'
 TESLA_HEADERS = {'Content-Type': 'application/ \
                 json', 'Authorization': 'Bearer {0}'.format(TESLA_TOKEN)}
 
