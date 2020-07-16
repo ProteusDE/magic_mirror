@@ -9,12 +9,10 @@ from PIL import ImageTk, Image
 import urllib.request
 import io
 import spotipy
-# from spotipy.oauth2 import SpotifyClientCredentials
 from spotipy.oauth2 import SpotifyOAuth
 from config import *
 
 import pprint
-from time import sleep
 
 # ----------- FUNCTIONS ------------ #
 
@@ -65,8 +63,6 @@ def tesla_update():
 
 def get_tesla_info():
     url_base = TESLA_BASE_URL + 'data_request/charge_state/'
-    print(TESLA_BASE_URL)
-    print(url_base)
     response = requests.get(url_base, headers=TESLA_HEADERS)
     print(TESLA_HEADERS)
 
@@ -94,7 +90,6 @@ def spotify_current_playback():
     song_id = resp["item"]["id"]
     if not status:
         return False
-        break
     if song_id != PLAYING_ID:
         print("New song")
         PLAYING_ID = song_id
@@ -123,13 +118,13 @@ def spotify_play():
     is_playing = spotify_current_playback()
     print(is_playing)
 
-    if is_playing == 1:
+    if is_playing == 0:
         sp.start_playback()
-        play_btn.configure(text="PLAY")
+        play_btn.configure(text="PAUSE")
         print("Pause")
     else:
         sp.pause_playback()
-        play_btn.configure(text="PAUSE")
+        play_btn.configure(text="PLAY")
         print("Play")
 
 
@@ -253,7 +248,6 @@ weather_text = weather_icon_canvas.create_text(50, 90, text="Sunny",
 weather_temperature = weather_icon_canvas.create_text(50, 115, text="0",
                                                       font=("Helvetica", 15),
                                                       fill=TEXT_COLOR)
-
 update_weather()
 
 
@@ -283,9 +277,10 @@ spotify_status = tk.Label(window, text="Playing status:", fg=TEXT_COLOR,
                           bg=BGCOLOR)
 spotify_status.grid(row=2, column=2, sticky=tk.N, columnspan=3)
 
-album_url = 'https://i.scdn.co/image/ab67616d00001e02d05d3aad30c5fb7614893cf5'
-raw_data = urllib.request.urlopen(album_url).read()
-im = Image.open(io.BytesIO(raw_data))
+# album_url = 'https://i.scdn.co/image/ab67616d00001e02d05d3aad30c5fb7614893cf5'
+# raw_data = urllib.request.urlopen(album_url).read()
+# im = Image.open(io.BytesIO(raw_data))
+im = Image.open(SPOTIFY_IMG)
 image = ImageTk.PhotoImage(im)
 spotify_album_cover = Label(window, image=image)
 spotify_album_cover.grid(row=3, column=2, columnspan=3, rowspan=4)
