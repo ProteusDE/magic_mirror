@@ -193,9 +193,9 @@ def spotify_test():
     pprint.pprint(user)
 
     res = sp.devices()
-    pprint(res)
+    pprint.pprint(res)
     playlists = sp.user_playlists('oveistad')
-    pprint(playlists)
+    pprint.pprint(playlists)
     # sp = spotipy.Spotify(client_credentials_manager=SpotifyOAuth(scope=scope))
 
 
