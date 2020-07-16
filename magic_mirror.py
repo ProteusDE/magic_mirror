@@ -29,8 +29,7 @@ def update_time():
 
 
 def update_weather():
-    weather_request = requests.get('{0}?lat={1}&lon={2}&appid={3}'.format(
-                                   WEATHER_URL, LAT, LON, WEATHER_API_KEY))
+    weather_request = requests.get(f'{WEATHER_URL}?lat={LAT}&lon={LON}&appid={WEATHER_API_KEY}')
     current_timestamp = int(weather_request.json()['current']['dt'])
     current_temperature_kelvin = weather_request.json()['current']['temp']
     current_temperature_celcius = str(int(current_temperature_kelvin) - 273)
