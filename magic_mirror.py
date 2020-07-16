@@ -185,21 +185,22 @@ def spotify_test():
     sp.trace = True
     user = sp.user('oveistad')
     pprint.pprint(user)
+
+    res = sp.devices()
+    pprint(res)
 # playlists = sp.user_playlists('Mix_Ove_likes')
 
     # sp = spotipy.Spotify(client_credentials_manager=SpotifyOAuth(scope=scope))
 
- #    res = sp.devices()
- #   pprint(res)
 
-  #  sp.volume(100)
-   # sleep(2)
+    sp.volume(100)
+    sleep(2)
 
-    #sp.volume(50)
-    #sleep(2)
+    sp.volume(50)
+    sleep(2)
 
-    #sp.volume(100)
-    #sleep(2)
+    sp.volume(100)
+    sleep(2)
 
 
 # ----------- PROGRAM START ------------ #
