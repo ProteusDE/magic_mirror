@@ -34,7 +34,7 @@ WEATHER_ICON_URL = "http://openweathermap.org/img/wn/"
 # ----- TESLA API --------#
 
 TESLA_IMG = '/home/pi/github/magic_mirror/images/tesla.jpg'
-TESLA_HEADERS = {f'Content-Type': 'application/json', 'Authorization': 'Bearer {TESLA_TOKEN}'}
+TESLA_HEADERS = {'Content-Type': 'application/json', 'Authorization': f'Bearer {TESLA_TOKEN}'}
 TESLA_BASE_URL = f'https://owner-api.teslamotors.com/api/1/vehicles/{VIM}/'
 
 
@@ -42,6 +42,7 @@ TESLA_BASE_URL = f'https://owner-api.teslamotors.com/api/1/vehicles/{VIM}/'
 
 SPOTIFY_BASE_URL = 'https://api.spotify.com/v1/me/'
 PLAYING_ID = ''
+SPOTIFY_IMG = '/home/pi/github/magic_mirror/images/spotify_logo.png'
 SCOPE = "user-read-playback-state,\
          user-modify-playback-state,user-library-read"
 PC_PLAYBACK_ID = '572e2c1bf0419b6f88c619c61ead7c1291976002'
