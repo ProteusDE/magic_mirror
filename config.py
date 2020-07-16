@@ -12,8 +12,8 @@ VIM = os.environ.get('VIM')
 WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
 TESLA_TOKEN = os.environ.get('TESLA_TOKEN')
 
-LAT = '59.917'			# Change this to your latitude
-LON = '10.728'			# Change this to your longditude
+LAT = '63.43'			# Change this to your latitude
+LON = '10.39'			# Change this to your longditude
 
 
 # ------------- ALTER THESE CONSTANTS IF YOU'D PLEASE ------------------#

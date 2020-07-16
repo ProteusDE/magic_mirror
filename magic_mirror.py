@@ -136,13 +136,13 @@ def spotify_previous():
     sp.previous_track()
 
 
-def spotify_increase_vol():
+def spotify_incr_vol():
     global spotify_volume
     sp.volume(spotify_volume + 10)
     spotify_volume = spotify_volume + 10
 
 
-def spotify_decrease_vol():
+def spotify_decr_vol():
     global spotify_volume
     sp.volume(spotify_volume - 10)
     spotify_volume = spotify_volume - 10
@@ -263,10 +263,15 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CLIENT_ID,
                                                username='oveistad'))
 
 
-spotify_test = tk.Button(window, text="TEST", height=5, width=8,
-                         command=spotify_test, bg=BUTTON_BG_COLOR,
-                         fg=BUTTON_TEXT_COLOR, relief=tk.RAISED)
-spotify_test.grid(row=8, column=1, sticky=tk.N, columnspan=1)
+spotify_incr_vol_btn = tk.Button(window, text="+", height=2, width=2,
+                                 command=spotify_incr_vol, bg=BUTTON_BG_COLOR,
+                                 fg=BUTTON_TEXT_COLOR, relief=tk.RAISED)
+spotify_incr_vol_btn.grid(row=8, column=1, sticky=tk.N)
+
+spotify_decr_vol_btn = tk.Button(window, text="-", height=2, width=2,
+                                 command=spotify_decr_vol, bg=BUTTON_BG_COLOR,
+                                 fg=BUTTON_TEXT_COLOR, relief=tk.RAISED)
+spotify_decr_vol_btn.grid(row=8, column=1, sticky=tk.S)
 
 
 spotify_label = tk.Label(window, text="SPOTIFY", font=("Helvetica", 15),
@@ -277,11 +282,7 @@ spotify_status = tk.Label(window, text="Playing status:", fg=TEXT_COLOR,
                           bg=BGCOLOR)
 spotify_status.grid(row=2, column=2, sticky=tk.N, columnspan=3)
 
-# album_url = 'https://i.scdn.co/image/ab67616d00001e02d05d3aad30c5fb7614893cf5'
-# raw_data = urllib.request.urlopen(album_url).read()
-# im = Image.open(io.BytesIO(raw_data))
-im = Image.open(SPOTIFY_IMG)
-image = ImageTk.PhotoImage(im)
+image = ImageTk.PhotoImage(Image.open(SPOTIFY_IMG))
 spotify_album_cover = Label(window, image=image)
 spotify_album_cover.grid(row=3, column=2, columnspan=3, rowspan=4)
 
