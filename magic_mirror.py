@@ -83,11 +83,11 @@ def get_tesla_info():
 
 def spotify_current_playback():
     global PLAYING_ID
+
     resp = sp.current_user_playing_track()
     status = bool(resp["is_playing"])
-    st = resp["is_playing"]
-    print(f"Status: {st}, Bool: {status}")
     song_id = resp["item"]["id"]
+
     if not status:
         return False
     if song_id != PLAYING_ID:
@@ -114,14 +114,23 @@ def change_album_cover(json_response):
     spotify_album_cover.image = image
 
 
+def toggle_playback():
+    global current_playback
+    if current_playback == LIVINGROOM_PLAYBACK_ID:
+        current_playback = PC_PLAYBACK_ID
+    else:
+        current_playback = LIVINGROOM_PLAYBACK_ID
+
+
 def spotify_play():
     is_playing = spotify_current_playback()
     print(is_playing)
 
     if is_playing == 0:
-        sp.start_playback()
+        sp.start_playback(device_id=current_playback)
         play_btn.configure(text="PAUSE")
         print("Pause")
+        toggle_playback()
     else:
         sp.pause_playback()
         play_btn.configure(text="PLAY")
@@ -148,20 +157,6 @@ def spotify_decr_vol():
     spotify_volume = spotify_volume - 10
 
 # def spotify_play_on_device(dev):
-
-
-def spotify_test():
-    print("\n\nCurrently playing:")
-    cp = sp.currently_playing()
-    pprint.pprint(cp)
-
-    print("\n\nCurrent user playing track:")
-    cupt = sp.current_user_playing_track()
-    pprint.pprint(cupt)
-
-    res = sp.devices()
-    print("\n\nDevices:")
-    pprint.pprint(res)
 
 
 # ----------- PROGRAM START ------------ #
