@@ -13,7 +13,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 from spotipy.oauth2 import SpotifyOAuth
 from config import *
 
-from pprint import pprint
+import pprint
 from time import sleep
 
 # ----------- FUNCTIONS ------------ #
