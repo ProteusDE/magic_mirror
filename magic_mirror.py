@@ -9,7 +9,7 @@ from PIL import ImageTk, Image
 import urllib.request
 import io
 import spotipy
-# from spotipy.oauth2 import SpotipyClientCredentials
+# from spotipy.oauth2 import SpotifyClientCredentials
 from spotipy.oauth2 import SpotifyOAuth
 from config import *
 
@@ -180,23 +180,26 @@ def spotify_test():
 
     scope = "user-read-playback-state,user-modify-playback-state"
 
-# auth_manager = SpotifyClientCredentials()
-# sp = spotipy.Spotify(auth_manager=auth_manager)
+    auth_manager = SpotifyClientCredentials()
+    sp = spotipy.Spotify(client_credentials_manager=auth_manager)
+    sp.trace = True
+    user = sp.user('oveistad')
+    pprint.pprint(user)
 # playlists = sp.user_playlists('Mix_Ove_likes')
 
-    sp = spotipy.Spotify(client_credentials_manager=SpotifyOAuth(scope=scope))
+    # sp = spotipy.Spotify(client_credentials_manager=SpotifyOAuth(scope=scope))
 
-    res = sp.devices()
-    pprint(res)
+ #    res = sp.devices()
+ #   pprint(res)
 
-    sp.volume(100)
-    sleep(2)
+  #  sp.volume(100)
+   # sleep(2)
 
-    sp.volume(50)
-    sleep(2)
+    #sp.volume(50)
+    #sleep(2)
 
-    sp.volume(100)
-    sleep(2)
+    #sp.volume(100)
+    #sleep(2)
 
 
 # ----------- PROGRAM START ------------ #
