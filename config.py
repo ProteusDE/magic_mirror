@@ -1,3 +1,5 @@
+import os
+
 # --- THESE SIX CONSTANTS NEEDS TO BE SET BEFORE LAUNCHING THE PROGRAM ----#
 
 TESLA_TOKEN = ''		# Insert Tesla Token here
@@ -31,6 +33,15 @@ TESLA_HEADERS = {'Content-Type': 'application/ \
 
 
 # ----- SPOTIFY API --------#
+
+# Add these three lines below to github later
+# Remember to set environment variables during install
+# export SPOTIPY_CLIENT_ID='{Add ID here}' etc.
+CLIENT_ID = os.environ.get('SPOTIPY_CLIENT_ID')
+CLIENT_SECRET = os.environ.get('SPOTIPY_CLIENT_SECRET')
+REDIRECT_URI = os.environ.get('SPOTIPY_REDIRECT_URI')
+
+
 SPOTIFY_BASE_URL = 'https://api.spotify.com/v1/me/'
 PLAYING_ID = ''
 

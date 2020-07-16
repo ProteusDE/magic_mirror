@@ -179,26 +179,30 @@ def spotify_previous():
 
 def spotify_test():
     username = 'oveistad'
-    scope = "user-read-playback-state,user-modify-playback-state,user-library-read"
+    scope = "user-read-playback-state,\
+             user-modify-playback-state,user-library-read"
 
-    # auth_manager = SpotifyClientCredentials()
-    CLIENT_ID = os.environ.get('SPOTIPY_CLIENT_ID')
-    CLIENT_SECRET = os.environ.get('SPOTIPY_CLIENT_SECRET')
-    REDIRECT_URI = os.environ.get('SPOTIPY_REDIRECT_URI')
+    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CLIENT_ID,
+                                                   client_secret=CLIENT_SECRET,
+                                                   redirect_uri=REDIRECT_URI,
+                                                   scope=scope,
+                                                   username='oveistad'))
+    print("\n\nCurrent user:")
+    pprint.pprint(sp.current_user())
 
-    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CLIENT_ID, client_secret=CLIENT_SECRET, redirect_uri=REDIRECT_URI, scope=scope, username='oveistad'))
-
-    # pprint(sp.current_user())
     user = sp.user(username)
+    print("\n\nuser:")
     pprint.pprint(user)
 
     res = sp.devices()
+    print("\n\nDevices:")
     pprint.pprint(res)
+
     playlists = sp.user_playlists('oveistad')
+    print("\n\nPlaylists:")
     pprint.pprint(playlists)
-    # sp = spotipy.Spotify(client_credentials_manager=SpotifyOAuth(scope=scope))
 
-
+    print("\n\nVolume alteration:")
     sp.volume(100)
     sleep(2)
 
@@ -219,7 +223,8 @@ window = tk.Tk()
 window.title(TITLE)
 window.geometry(SCREEN_RESOLUTION)
 window.configure(background=BACKGROUND_COLOR)
-# window.overrideredirect(True)  # Make program run full screen mode
+# The method overridedirect might have to be disabled during auth of Spotify
+window.overrideredirect(True)  # Make program run full screen mode
 
 
 window.columnconfigure(0, pad=3, weight=1)
