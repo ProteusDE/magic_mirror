@@ -188,7 +188,7 @@ def spotify_test():
 
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CLIENT_ID, client_secret=CLIENT_SECRET, redirect_uri=REDIRECT_URI, scope=scope, username='oveistad'))
 
-    pprint(sp.current_user())
+    # pprint(sp.current_user())
     user = sp.user(username)
     pprint.pprint(user)
 
@@ -219,7 +219,7 @@ window = tk.Tk()
 window.title(TITLE)
 window.geometry(SCREEN_RESOLUTION)
 window.configure(background=BACKGROUND_COLOR)
-window.overrideredirect(True)  # Make program run full screen mode
+# window.overrideredirect(True)  # Make program run full screen mode
 
 
 window.columnconfigure(0, pad=3, weight=1)
