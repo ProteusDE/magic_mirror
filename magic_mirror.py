@@ -8,7 +8,12 @@ import requests
 from PIL import ImageTk, Image
 import urllib.request
 import io
+import spotipy
+from spotipy.oauth2 import SpotipyClientCredentials
 from config import *
+
+from pprint import pprint
+from time import sleep
 
 # ----------- FUNCTIONS ------------ #
 
@@ -118,7 +123,7 @@ def change_album_cover(json_response):
 def spotify_play():
     is_playing = spotify_current_playback()
     print(is_playing)
-    headers = {'Authorization': 'Bearer {0}'.format(SPOTIFY_TOKEN)}
+    headers = {f'Authorization': 'Bearer {SPOTIFY_TOKEN}'}
 
     if is_playing == 1:
         url_base = SPOTIFY_BASE_URL + 'player/pause'
@@ -142,7 +147,7 @@ def spotify_play():
 
 def spotify_next():
     url_base = SPOTIFY_BASE_URL + 'player/next'
-    headers = {'Authorization': 'Bearer {0}'.format(SPOTIFY_TOKEN)}
+    headers = {f'Authorization': 'Bearer {SPOTIFY_TOKEN}'}
 
     response = requests.post(url_base, headers=headers)
 
@@ -157,7 +162,7 @@ def spotify_next():
 
 def spotify_previous():
     url_base = SPOTIFY_BASE_URL + 'player/previous'
-    headers = {'Authorization': 'Bearer {0}'.format(SPOTIFY_TOKEN)}
+    headers = {f'Authorization': 'Bearer {SPOTIFY_TOKEN}'}
 
     response = requests.post(url_base, headers=headers)
 
@@ -168,6 +173,29 @@ def spotify_previous():
         print(response.status_code)
         print("Failed to get a response...")
         return None
+
+
+def spotify_test():
+
+    scope = "user-read-playback-state,user-modify-playback-state"
+
+# auth_manager = SpotifyClientCredentials()
+# sp = spotipy.Spotify(auth_manager=auth_manager)
+# playlists = sp.user_playlists('Mix_Ove_likes')
+
+    sp = spotipy.Spotify(client_credentials_manager=SpotifyOAuth(scope=scope))
+
+    res = sp.devices()
+    pprint(res)
+
+    sp.volume(100)
+    sleep(2)
+
+    sp.volume(50)
+    sleep(2)
+
+    sp.volume(100)
+    sleep(2)
 
 
 # ----------- PROGRAM START ------------ #
@@ -258,6 +286,12 @@ update_weather()
 
 
 # ----------- SPOTIFY  ----------- #
+
+
+spotify_test = tk.Button(window, text="TEST", height=5, width=8,
+                         command=spotify_test, bg=BUTTON_BG_COLOR,
+                         fg=BUTTON_TEXT_COLOR, relief=tk.RAISED)
+spotify_test.grid(row=8, column=1, sticky=tk.N, columnspan=1)
 
 
 spotify_label = tk.Label(window, text="SPOTIFY", font=("Helvetica", 15),
