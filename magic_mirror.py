@@ -10,6 +10,7 @@ import urllib.request
 import io
 import spotipy
 # from spotipy.oauth2 import SpotipyClientCredentials
+from spotipy.oauth2 import SpotifyOAuth
 from config import *
 
 from pprint import pprint
