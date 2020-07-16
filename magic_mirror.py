@@ -15,7 +15,6 @@ from config import *
 
 import pprint
 from time import sleep
-import os
 
 # ----------- FUNCTIONS ------------ #
 
