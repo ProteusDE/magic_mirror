@@ -15,6 +15,7 @@ from config import *
 
 import pprint
 from time import sleep
+import os
 
 # ----------- FUNCTIONS ------------ #
 
@@ -181,8 +182,12 @@ def spotify_test():
     scope = "user-read-playback-state,user-modify-playback-state,user-library-read"
 
     # auth_manager = SpotifyClientCredentials()
-    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
-    # sp.trace = True
+    CLIENT_ID = os.environ.get('SPOTIPY_CLIENT_ID')
+    CLIENT_SECRET = os.environ.get('SPOTIPY_CLIENT_SECRET')
+    REDIRECT_URI = os.environ.get('SPOTIPY_REDIRECT_URI')
+
+    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CLIENT_ID, client_secret=CLIENT_SECRET, redirect_uri=REDIRECT_URI, scope=scope, username='oveistad'))
+
     pprint(sp.current_user())
     user = sp.user(username)
     pprint.pprint(user)
