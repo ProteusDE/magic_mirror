@@ -177,14 +177,14 @@ def spotify_previous():
 
 
 def spotify_test():
-
+    username = 'oveistad'
     scope = "user-read-playback-state,user-modify-playback-state,user-library-read"
 
     # auth_manager = SpotifyClientCredentials()
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
     # sp.trace = True
     pprint(sp.current_user())
-    user = sp.user('oveistad')
+    user = sp.user(username)
     pprint.pprint(user)
 
     res = sp.devices()
