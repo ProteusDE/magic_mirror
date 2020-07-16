@@ -83,25 +83,15 @@ def get_tesla_info():
 
 
 def spotify_current_playback():
-    url_base = SPOTIFY_BASE_URL + 'player/currently-playing'
-    headers = {f'Authorization': 'Bearer {SPOTIFY_TOKEN}'}
-
-    response = requests.get(url_base, headers=headers)
-
-    if response.status_code == 200:
-        global PLAYING_ID
-        resp = json.loads(response.content.decode('utf-8'))
-        status = bool(resp["is_playing"])
-        song_id = resp["item"]["id"]
-        if song_id != PLAYING_ID:
-            print("New song")
-            PLAYING_ID = song_id
-            change_album_cover(resp)
+    global PLAYING_ID
+    resp = sp.current_user_playing_track()
+    status = bool(resp["is_playing"])
+    song_id = resp["item"]["id"]
+    if song_id != PLAYING_ID:
+        print("New song")
+        PLAYING_ID = song_id
+        change_album_cover(resp)
         return status
-    else:
-        print(response.status_code)
-        print("Failed to get a response...")
-        return -1
 
 
 def change_album_cover(json_response):
@@ -165,9 +155,6 @@ def spotify_test():
     print("\n\nCurrent user playing track:")
     cupt = sp.current_user_playing_track()
     pprint.pprint(cupt)
-
-    print("\n\nCurrent user:")
-    pprint.pprint(sp.current_user())
 
     res = sp.devices()
     print("\n\nDevices:")
