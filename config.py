@@ -8,7 +8,7 @@ CLIENT_ID = os.environ.get('SPOTIPY_CLIENT_ID')
 CLIENT_SECRET = os.environ.get('SPOTIPY_CLIENT_SECRET')
 REDIRECT_URI = os.environ.get('SPOTIPY_REDIRECT_URI')
 
-VIM = os.environ.get('TESLA_VIM')
+VIM = os.environ.get('VIM')
 WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
 TESLA_TOKEN = os.environ.get('TESLA_TOKEN')
 
@@ -45,6 +45,9 @@ SPOTIFY_BASE_URL = 'https://api.spotify.com/v1/me/'
 PLAYING_ID = ''
 SCOPE = "user-read-playback-state,\
          user-modify-playback-state,user-library-read"
+PC_PLAYBACK_ID = '572e2c1bf0419b6f88c619c61ead7c1291976002'
+MOBILE_PLAYBACK_ID = 'eb95c22f8081a328257d4accf8cbabf1e8e73290'
+LIVINGROOM_PLAYBACK_ID = 'aedf617860060aeb536287250a2159a20b48c380'
 
 # --------------- COLOR THEME ----------------#
 

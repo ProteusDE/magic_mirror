@@ -124,57 +124,23 @@ def change_album_cover(json_response):
 def spotify_play():
     is_playing = spotify_current_playback()
     print(is_playing)
-    # headers = {f'Authorization': 'Bearer {SPOTIFY_TOKEN}'}
 
     if is_playing == 1:
-        # url_base = SPOTIFY_BASE_URL + 'player/pause'
         sp.start_playback()
         play_btn.configure(text="PLAY")
         print("Pause")
     else:
-        url_base = SPOTIFY_BASE_URL + 'player/play'
+        sp.pause_playback()
         play_btn.configure(text="PAUSE")
         print("Play")
 
-    response = requests.put(url_base, headers=headers)
-
-    if response.status_code == 204:
-        print("Play song")
-        return None
-    else:
-        print(response.status_code)
-        print("Failed to get a response...")
-        return None
-
 
 def spotify_next():
-    url_base = SPOTIFY_BASE_URL + 'player/next'
-    headers = {f'Authorization': 'Bearer {SPOTIFY_TOKEN}'}
-
-    response = requests.post(url_base, headers=headers)
-
-    if response.status_code == 204:
-        print("Next song")
-        return None
-    else:
-        print(response.status_code)
-        print("Failed to get a response...")
-        return None
+    sp.next_track()
 
 
 def spotify_previous():
-    # url_base = SPOTIFY_BASE_URL + 'player/previous'
-    # headers = {f'Authorization': 'Bearer {SPOTIFY_TOKEN}'}
     sp.previous_track()
-    # response = requests.post(url_base, headers=headers)
-
-    if response.status_code == 204:
-        print("Previous song")
-        return None
-    else:
-        # print(response.status_code)
-        print("Failed to get a response...")
-        return None
 
 
 def spotify_increase_vol():
@@ -192,6 +158,13 @@ def spotify_decrease_vol():
 
 
 def spotify_test():
+    print("\n\nCurrently playing:")
+    cp = sp.currently_playing()
+    pprint.pprint(cp)
+
+    print("\n\nCurrent user playing track:")
+    cupt = sp.current_user_playing_track()
+    pprint.pprint(cupt)
 
     print("\n\nCurrent user:")
     pprint.pprint(sp.current_user())
@@ -199,16 +172,6 @@ def spotify_test():
     res = sp.devices()
     print("\n\nDevices:")
     pprint.pprint(res)
-
-    print("\n\nVolume alteration:")
-    sp.volume(100)
-    sleep(2)
-
-    sp.volume(50)
-    sleep(2)
-
-    sp.volume(100)
-    sleep(2)
 
 
 # ----------- PROGRAM START ------------ #
@@ -302,6 +265,7 @@ update_weather()
 # ----------- SPOTIFY  ----------- #
 
 spotify_volume = 50
+current_playback = LIVINGROOM_PLAYBACK_ID
 
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CLIENT_ID,
                                                client_secret=CLIENT_SECRET,
