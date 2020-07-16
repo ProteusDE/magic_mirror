@@ -92,6 +92,9 @@ def spotify_current_playback():
     st = resp["is_playing"]
     print(f"Status: {st}, Bool: {status}")
     song_id = resp["item"]["id"]
+    if not status:
+        return False
+        break
     if song_id != PLAYING_ID:
         print("New song")
         PLAYING_ID = song_id
