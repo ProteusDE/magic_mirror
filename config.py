@@ -43,7 +43,8 @@ TESLA_BASE_URL = f'https://owner-api.teslamotors.com/api/1/vehicles/{VIM}/'
 
 SPOTIFY_BASE_URL = 'https://api.spotify.com/v1/me/'
 PLAYING_ID = ''
-
+SCOPE = "user-read-playback-state,\
+         user-modify-playback-state,user-library-read"
 
 # --------------- COLOR THEME ----------------#
 

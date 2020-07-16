@@ -124,10 +124,11 @@ def change_album_cover(json_response):
 def spotify_play():
     is_playing = spotify_current_playback()
     print(is_playing)
-    headers = {f'Authorization': 'Bearer {SPOTIFY_TOKEN}'}
+    # headers = {f'Authorization': 'Bearer {SPOTIFY_TOKEN}'}
 
     if is_playing == 1:
-        url_base = SPOTIFY_BASE_URL + 'player/pause'
+        # url_base = SPOTIFY_BASE_URL + 'player/pause'
+        sp.start_playback()
         play_btn.configure(text="PLAY")
         print("Pause")
     else:
@@ -162,44 +163,42 @@ def spotify_next():
 
 
 def spotify_previous():
-    url_base = SPOTIFY_BASE_URL + 'player/previous'
-    headers = {f'Authorization': 'Bearer {SPOTIFY_TOKEN}'}
-
-    response = requests.post(url_base, headers=headers)
+    # url_base = SPOTIFY_BASE_URL + 'player/previous'
+    # headers = {f'Authorization': 'Bearer {SPOTIFY_TOKEN}'}
+    sp.previous_track()
+    # response = requests.post(url_base, headers=headers)
 
     if response.status_code == 204:
         print("Previous song")
         return None
     else:
-        print(response.status_code)
+        # print(response.status_code)
         print("Failed to get a response...")
         return None
 
 
-def spotify_test():
-    username = 'oveistad'
-    scope = "user-read-playback-state,\
-             user-modify-playback-state,user-library-read"
+def spotify_increase_vol():
+    global spotify_volume
+    sp.volume(spotify_volume + 10)
+    spotify_volume = spotify_volume + 10
 
-    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CLIENT_ID,
-                                                   client_secret=CLIENT_SECRET,
-                                                   redirect_uri=REDIRECT_URI,
-                                                   scope=scope,
-                                                   username='oveistad'))
+
+def spotify_decrease_vol():
+    global spotify_volume
+    sp.volume(spotify_volume - 10)
+    spotify_volume = spotify_volume - 10
+
+# def spotify_play_on_device(dev):
+
+
+def spotify_test():
+
     print("\n\nCurrent user:")
     pprint.pprint(sp.current_user())
-
-    user = sp.user(username)
-    print("\n\nuser:")
-    pprint.pprint(user)
 
     res = sp.devices()
     print("\n\nDevices:")
     pprint.pprint(res)
-
-    playlists = sp.user_playlists('oveistad')
-    print("\n\nPlaylists:")
-    pprint.pprint(playlists)
 
     print("\n\nVolume alteration:")
     sp.volume(100)
@@ -301,6 +300,14 @@ update_weather()
 
 
 # ----------- SPOTIFY  ----------- #
+
+spotify_volume = 50
+
+sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CLIENT_ID,
+                                               client_secret=CLIENT_SECRET,
+                                               redirect_uri=REDIRECT_URI,
+                                               scope=SCOPE,
+                                               username='oveistad'))
 
 
 spotify_test = tk.Button(window, text="TEST", height=5, width=8,
