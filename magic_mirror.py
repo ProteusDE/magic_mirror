@@ -9,7 +9,7 @@ from PIL import ImageTk, Image
 import urllib.request
 import io
 import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
+# from spotipy.oauth2 import SpotifyClientCredentials
 from spotipy.oauth2 import SpotifyOAuth
 from config import *
 
@@ -178,18 +178,18 @@ def spotify_previous():
 
 def spotify_test():
 
-    scope = "user-read-playback-state,user-modify-playback-state"
+    scope = "user-read-playback-state,user-modify-playback-state,user-library-read"
 
-    auth_manager = SpotifyClientCredentials()
-    sp = spotipy.Spotify(client_credentials_manager=auth_manager)
+    # auth_manager = SpotifyClientCredentials()
+    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
     sp.trace = True
     user = sp.user('oveistad')
     pprint.pprint(user)
 
     res = sp.devices()
     pprint(res)
-# playlists = sp.user_playlists('Mix_Ove_likes')
-
+    playlists = sp.user_playlists('Mix_Ove_likes')
+    pprint(playlists)
     # sp = spotipy.Spotify(client_credentials_manager=SpotifyOAuth(scope=scope))
 
 
