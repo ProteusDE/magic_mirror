@@ -183,6 +183,7 @@ def spotify_test():
     # auth_manager = SpotifyClientCredentials()
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
     # sp.trace = True
+    pprint(sp.current_user())
     user = sp.user('oveistad')
     pprint.pprint(user)
 
