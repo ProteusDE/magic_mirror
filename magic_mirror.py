@@ -35,7 +35,7 @@ def update_weather():
     current_temperature_celcius = str(int(current_temperature_kelvin) - 273)
     current_weather_description = weather_request.json()['current']['weather'][0]['main']
     current_weather_icon = weather_request.json()['current']['weather'][0]['icon']
-    current_weather_url = WEATHER_ICON_URL + "{0}@2x.png".format(current_weather_icon)
+    current_weather_url = WEATHER_ICON_URL + f"{current_weather_icon}@2x.png"
 
     weather_icon_canvas.itemconfig(weather_temperature,
                                    text=current_temperature_celcius + " deg")
@@ -78,7 +78,7 @@ def get_tesla_info():
 
 def spotify_current_playback():
     url_base = SPOTIFY_BASE_URL + 'player/currently-playing'
-    headers = {'Authorization': 'Bearer {0}'.format(SPOTIFY_TOKEN)}
+    headers = {f'Authorization': 'Bearer {SPOTIFY_TOKEN}'}
 
     response = requests.get(url_base, headers=headers)
 
@@ -104,8 +104,7 @@ def change_album_cover(json_response):
     artist = json_response["item"]["album"]["artists"][0]["name"]
     album = json_response["item"]["album"]["name"]
 
-    song = '{title} | {artist} | {album}'.format(title=title,
-                                                 artist=artist, album=album)
+    song = f'{title} | {artist} | {album}'
 
     spotify_song_title.configure(text=song)
 
