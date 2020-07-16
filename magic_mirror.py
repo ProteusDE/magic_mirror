@@ -65,7 +65,10 @@ def tesla_update():
 
 def get_tesla_info():
     url_base = TESLA_BASE_URL + 'data_request/charge_state/'
+    print(TESLA_BASE_URL)
+    print(url_base)
     response = requests.get(url_base, headers=TESLA_HEADERS)
+    print(TESLA_HEADERS)
 
     if response.status_code == 200:
         pwr = json.loads(response.content.decode('utf-8'))
@@ -86,6 +89,7 @@ def spotify_current_playback():
     global PLAYING_ID
     resp = sp.current_user_playing_track()
     status = bool(resp["is_playing"])
+    print("Status: {resp["is_playing"]}, Bool: {status}")
     song_id = resp["item"]["id"]
     if song_id != PLAYING_ID:
         print("New song")
