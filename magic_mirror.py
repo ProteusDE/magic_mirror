@@ -9,7 +9,7 @@ from PIL import ImageTk, Image
 import urllib.request
 import io
 import spotipy
-from spotipy.oauth2 import SpotipyClientCredentials
+# from spotipy.oauth2 import SpotipyClientCredentials
 from config import *
 
 from pprint import pprint
