@@ -162,8 +162,8 @@ def spotify_decr_vol():
     sp.volume(spotify_volume - 10)
     spotify_volume = spotify_volume - 10
 
-# def spotify_play_on_device(dev):
-
+def spotify_play_on_device():
+    print("It works")
 
 # ----------- PROGRAM START ------------ #
 
@@ -205,6 +205,7 @@ tesla_label.grid(row=1, column=0, padx=5, pady=5, sticky=tk.N)
 tesla_canv = tk.Canvas(window, width=300, height=120,
                        bg=BGCOLOR, highlightthickness=0)
 tesla_canv.grid(row=3, column=0, sticky=tk.N)
+tesla_canv.bind("<Button-1>", spotify_play_on_device)
 
 tesla_logo = ImageTk.PhotoImage(Image.open(TESLA_IMG))
 tesla_img = tesla_canv.create_image(160, 60, image=tesla_logo)
