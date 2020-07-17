@@ -198,18 +198,18 @@ tesla_img = tesla_canv.create_image(160, 60, image=tesla_logo)
 progress = Progressbar(window, orient=tk.HORIZONTAL, length=200,
                        mode='determinate')
 progress['value'] = 0
-progress.grid(row=4, column=0, sticky=tk.N)
+progress.grid(row=3, column=0, sticky=tk.S)
 
 bat_range = tk.Label(window, text="Range: ", fg=TEXT_COLOR, bg=BGCOLOR)
-bat_range.grid(row=4, column=0, sticky=tk.S)
+bat_range.grid(row=4, column=0, sticky=tk.N)
 
 temp_inside = tk.Label(window, text="Temperature inside: ",
                        fg=TEXT_COLOR, bg=BGCOLOR)
-temp_inside.grid(row=5, column=0, sticky=tk.N)
+temp_inside.grid(row=4, column=0, sticky=tk.S)
 
 temp_outside = tk.Label(window, text="Temperature outside: ",
                         fg=TEXT_COLOR, bg=BGCOLOR)
-temp_outside.grid(row=6, column=0, sticky=tk.N)
+temp_outside.grid(row=5, column=0, sticky=tk.N)
 
 
 # ----------- TIME ----------- #
