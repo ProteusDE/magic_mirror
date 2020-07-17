@@ -128,7 +128,7 @@ def spotify_play():
     print(is_playing)
 
     if is_playing is False:
-        sp.start_playback(device_id=current_playback)
+        sp.start_playback()
         play_btn.configure(text="PAUSE")
         print("Playing")
         # toggle_playback()
