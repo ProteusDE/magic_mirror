@@ -87,8 +87,8 @@ def get_tesla_info():
         temp_in = climate['response']['inside_temp']
         temp_out = climate['response']['outside_temp']
 
-        temp_inside.configure(text="Temperature inside: " + temp_in + " C")
-        temp_outside.configure(text="Temperature outside: " + temp_out + " C")
+        temp_inside.configure(text="Temperature inside: " + str(temp_in) + " C")
+        temp_outside.configure(text="Temperature outside: " + str(temp_out) + " C")
     else:
         print(cl_response.status_code)
         print("Failed to get a response...")
