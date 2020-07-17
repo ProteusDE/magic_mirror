@@ -64,19 +64,33 @@ def tesla_update():
 
 
 def get_tesla_info():
-    url_base = TESLA_BASE_URL + 'data_request/charge_state/'
-    response = requests.get(url_base, headers=TESLA_HEADERS)
+    charge_url = TESLA_BASE_URL + 'data_request/charge_state/'
+    ch_response = requests.get(charge_url, headers=TESLA_HEADERS)
 
-    if response.status_code == 200:
-        pwr = json.loads(response.content.decode('utf-8'))
+    if ch_response.status_code == 200:
+        pwr = json.loads(ch_response.content.decode('utf-8'))
         km = str(int((pwr["response"]["ideal_battery_range"]) * 1.609))
         percent = str(pwr["response"]["battery_level"])
         last_update = pwr["response"]["timestamp"]
         bat_range.configure(text="Range: " + km + " km (" + percent + "%)")
         progress['value'] = int(percent)
-        return json.loads(response.content.decode('utf-8'))
     else:
-        print(response.status_code)
+        print(ch_response.status_code)
+        print("Failed to get a response...")
+        return None
+
+    climate_url = TESLA_BASE_URL + 'data_request/climate_state/'
+    cl_response = requests.get(climate_url, headers=TESLA_HEADERS)
+
+    if cl_response.status_code == 200:
+        climate = json.loads(response.content.decode('utf-8'))
+        temp_in = climate['response']['inside_temp']
+        temp_out = climate['response']['outside_temp']
+
+        temp_in.configure(text="Temperature inside: " + temp_in + " C")
+        temp_out.configure(text="Temperature outside: " + temp_out + " C")
+    else:
+        print(cl_response.status_code)
         print("Failed to get a response...")
         return None
 
