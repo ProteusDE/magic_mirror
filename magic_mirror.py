@@ -64,14 +64,12 @@ def tesla_update():
 def get_tesla_info():
     url_base = TESLA_BASE_URL + 'data_request/charge_state/'
     response = requests.get(url_base, headers=TESLA_HEADERS)
-    print(TESLA_HEADERS)
 
     if response.status_code == 200:
         pwr = json.loads(response.content.decode('utf-8'))
         km = str(int((pwr["response"]["ideal_battery_range"]) * 1.609))
         percent = str(pwr["response"]["battery_level"])
         last_update = pwr["response"]["timestamp"]
-        print(last_update)
         bat_range.configure(text="Range: " + km + " km (" + percent + "%)")
         progress['value'] = int(percent)
         return json.loads(response.content.decode('utf-8'))
@@ -85,18 +83,17 @@ def spotify_current_playback():
     global PLAYING_ID
 
     resp = sp.current_user_playing_track()
-    pprint.pprint(resp)
-    if resp:
+
+    if not resp["is_playing"]:
         status = bool(resp["is_playing"])
         song_id = resp["item"]["id"]
-
-    if not status:
-        return False
-    if song_id != PLAYING_ID:
-        print("New song")
-        PLAYING_ID = song_id
-        change_album_cover(resp)
+        if song_id != PLAYING_ID:
+            print("New song")
+            PLAYING_ID = song_id
+            change_album_cover(resp)
         return status
+    else:
+        return False
 
 
 def change_album_cover(json_response):
