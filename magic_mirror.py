@@ -127,15 +127,15 @@ def spotify_play():
     is_playing = spotify_current_playback()
     print(is_playing)
 
-    if is_playing == 0:
+    if is_playing is False:
         sp.start_playback(device_id=current_playback)
         play_btn.configure(text="PAUSE")
-        print("Pause")
-        toggle_playback()
+        print("Playing")
+        # toggle_playback()
     else:
         sp.pause_playback()
         play_btn.configure(text="PLAY")
-        print("Play")
+        print("Paused")
 
 
 def spotify_next():
