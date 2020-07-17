@@ -27,10 +27,10 @@ def update_time():
     timestamp.configure(text=localtime)
     if spotify_current_playback():
         spotify_status.configure(text="Playing")
-        play_btn.configure(text="PLAY")
+        play_btn.configure(text="PAUSE")
     else:
         spotify_status.configure(text="Paused")
-        play_btn.configure(text="PAUSE")
+        play_btn.configure(text="PLAY")
     window.after(GUI_UPDATE_FREQUENCY, update_time)
 
 
