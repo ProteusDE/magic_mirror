@@ -228,16 +228,21 @@ weather_label = tk.Label(window, text="WEATHER", font=("Helvetica", 15),
 weather_label.grid(row=1, column=1, padx=5, pady=5)
 
 default_weather_url = 'http://openweathermap.org/img/wn/01d.png'
-try:
-    dwu_raw = urllib.request.urlopen(default_weather_url).read()
-    current_weather = Image.open(io.BytesIO(dwu_raw))
-    cw_image = ImageTk.PhotoImage(current_weather)
-except:
-    print("Could not reach weather server...")
 
 weather_icon_canvas = tk.Canvas(window, width=130, height=300, bg=BGCOLOR,
                                 highlightthickness=0)
 weather_icon_canvas.grid(row=3, column=1, sticky=tk.N, rowspan=3)
+
+try:
+    dwu_raw = urllib.request.urlopen(default_weather_url).read()
+    current_weather = Image.open(io.BytesIO(dwu_raw))
+    cw_image = ImageTk.PhotoImage(current_weather)
+except URLError:
+    print("Could not reach weather server...(Timeout)")
+    cw_image = ImageTk.PhotoImage(Image.open("/home/pi/github/magic_mirror/images/weather_icon.png"))
+except:
+    print("Could not reach weather server...")
+
 weather_icon = weather_icon_canvas.create_image(50, 30, image=cw_image)
 weather_text = weather_icon_canvas.create_text(50, 90, text="Sunny",
                                                font=("Helvetica", 15),
