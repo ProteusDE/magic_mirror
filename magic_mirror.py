@@ -86,9 +86,9 @@ def spotify_current_playback():
 
     resp = sp.current_user_playing_track()
     pprint.pprint(resp)
-    
-    status = bool(resp["is_playing"])
-    song_id = resp["item"]["id"]
+    if resp:
+        status = bool(resp["is_playing"])
+        song_id = resp["item"]["id"]
 
     if not status:
         return False
