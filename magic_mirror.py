@@ -84,11 +84,11 @@ def get_tesla_info():
 
     if cl_response.status_code == 200:
         climate = json.loads(cl_response.content.decode('utf-8'))
-        temp_in = str(climate['response']['inside_temp'])
-        temp_out = str(climate['response']['outside_temp'])
+        temp_in = climate['response']['inside_temp']
+        temp_out = climate['response']['outside_temp']
 
-        temp_in.configure(text="Temperature inside: " + temp_in + " C")
-        temp_out.configure(text="Temperature outside: " + temp_out + " C")
+        temp_inside.configure(text="Temperature inside: " + temp_in + " C")
+        temp_outside.configure(text="Temperature outside: " + temp_out + " C")
     else:
         print(cl_response.status_code)
         print("Failed to get a response...")
