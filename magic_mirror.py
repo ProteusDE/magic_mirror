@@ -83,17 +83,19 @@ def spotify_current_playback():
     global PLAYING_ID
 
     resp = sp.current_user_playing_track()
-    status = resp["is_playing"]
-
-    if status:
-        song_id = resp["item"]["id"]
-        if song_id != PLAYING_ID:
-            print("New song")
-            PLAYING_ID = song_id
-            change_album_cover(resp)
-        return status
+    if resp is None:
+        print("None is playing")
     else:
-        return False
+        status = resp["is_playing"]
+        if status:
+            song_id = resp["item"]["id"]
+            if song_id != PLAYING_ID:
+                print("New song")
+                PLAYING_ID = song_id
+                change_album_cover(resp)
+            return status
+        else:
+            return False
 
 
 def change_album_cover(json_response):
