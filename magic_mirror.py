@@ -123,11 +123,9 @@ def spotify_play():
 
     if is_playing is False:
         sp.start_playback()
-        play_btn.configure(text="PAUSE")
         print("Playing")
     else:
         sp.pause_playback()
-        play_btn.configure(text="PLAY")
         print("Paused")
 
 
@@ -203,7 +201,15 @@ progress['value'] = 0
 progress.grid(row=4, column=0, sticky=tk.N)
 
 bat_range = tk.Label(window, text="Range: ", fg=TEXT_COLOR, bg=BGCOLOR)
-bat_range.grid(row=5, column=0, sticky=tk.N)
+bat_range.grid(row=4, column=0, sticky=tk.S)
+
+temp_inside = tk.Label(window, text="Temperature inside: ",
+                       fg=TEXT_COLOR, bg=BGCOLOR)
+temp_inside.grid(row=5, column=0, sticky=tk.N)
+
+temp_outside = tk.Label(window, text="Temperature outside: ",
+                        fg=TEXT_COLOR, bg=BGCOLOR)
+temp_outside.grid(row=6, column=0, sticky=tk.N)
 
 
 # ----------- TIME ----------- #
