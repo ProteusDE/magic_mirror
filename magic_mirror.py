@@ -83,7 +83,7 @@ def get_tesla_info():
     cl_response = requests.get(climate_url, headers=TESLA_HEADERS)
 
     if cl_response.status_code == 200:
-        climate = json.loads(response.content.decode('utf-8'))
+        climate = json.loads(cl_response.content.decode('utf-8'))
         temp_in = climate['response']['inside_temp']
         temp_out = climate['response']['outside_temp']
 
