@@ -83,9 +83,9 @@ def spotify_current_playback():
     global PLAYING_ID
 
     resp = sp.current_user_playing_track()
+    status = resp["is_playing"]
 
-    if not resp["is_playing"]:
-        status = bool(resp["is_playing"])
+    if status:
         song_id = resp["item"]["id"]
         if song_id != PLAYING_ID:
             print("New song")
