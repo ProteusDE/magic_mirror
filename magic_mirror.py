@@ -228,9 +228,12 @@ weather_label = tk.Label(window, text="WEATHER", font=("Helvetica", 15),
 weather_label.grid(row=1, column=1, padx=5, pady=5)
 
 default_weather_url = 'http://openweathermap.org/img/wn/01d.png'
-dwu_raw = urllib.request.urlopen(default_weather_url).read()
-current_weather = Image.open(io.BytesIO(dwu_raw))
-cw_image = ImageTk.PhotoImage(current_weather)
+try:
+    dwu_raw = urllib.request.urlopen(default_weather_url).read()
+    current_weather = Image.open(io.BytesIO(dwu_raw))
+    cw_image = ImageTk.PhotoImage(current_weather)
+except:
+    print("Could not reach weather server...")
 
 weather_icon_canvas = tk.Canvas(window, width=130, height=300, bg=BGCOLOR,
                                 highlightthickness=0)
