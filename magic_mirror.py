@@ -300,7 +300,15 @@ previous_btn = tk.Button(window, text="PREVIOUS", height=5, width=8,
                          fg=BUTTON_TEXT_COLOR, relief=tk.RAISED)
 previous_btn.grid(row=8, column=2, sticky=tk.SW, padx=5, pady=5)
 
-play_btn = tk.Button(window, text="PLAY", height=5, width=8,
+
+is_playing = spotify_current_playback()
+if is_playing is False:
+    play_btn_text = "-"
+else:
+    play_btn_text = "PAUSE"
+
+
+play_btn = tk.Button(window, text=play_btn_text, height=5, width=8,
                      command=spotify_play, bg=BUTTON_BG_COLOR,
                      fg=BUTTON_TEXT_COLOR, relief=tk.RAISED)
 play_btn.grid(row=8, column=3, sticky=tk.S, padx=5, pady=5)
