@@ -162,7 +162,7 @@ def spotify_decr_vol():
     sp.volume(spotify_volume - 10)
     spotify_volume = spotify_volume - 10
 
-def spotify_play_on_device():
+def spotify_play_on_device(event):
     print("It works")
 
 # ----------- PROGRAM START ------------ #
