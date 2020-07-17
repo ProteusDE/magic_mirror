@@ -29,7 +29,7 @@ WEATHER_FREQUENCY = 1800000		# Update GUI every half hour
 
 WEATHER_URL = 'https://api.openweathermap.org/data/2.5/onecall'
 WEATHER_ICON_URL = "http://openweathermap.org/img/wn/"
-
+WEATHER_ICON = "/home/pi/github/magic_mirror/images/weather_icon.png"
 
 # ----- TESLA API --------#
 

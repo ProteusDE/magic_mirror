@@ -27,8 +27,10 @@ def update_time():
     timestamp.configure(text=localtime)
     if spotify_current_playback():
         spotify_status.configure(text="Playing")
+        play_btn.configure(text="PLAY")
     else:
         spotify_status.configure(text="Paused")
+        play_btn.configure(text="PAUSE")
     window.after(GUI_UPDATE_FREQUENCY, update_time)
 
 
@@ -115,14 +117,6 @@ def change_album_cover(json_response):
     spotify_album_cover.image = image
 
 
-def toggle_playback():
-    global current_playback
-    if current_playback == LIVINGROOM_PLAYBACK_ID:
-        current_playback = PC_PLAYBACK_ID
-    else:
-        current_playback = LIVINGROOM_PLAYBACK_ID
-
-
 def spotify_play():
     is_playing = spotify_current_playback()
     print(is_playing)
@@ -131,7 +125,6 @@ def spotify_play():
         sp.start_playback()
         play_btn.configure(text="PAUSE")
         print("Playing")
-        # toggle_playback()
     else:
         sp.pause_playback()
         play_btn.configure(text="PLAY")
@@ -163,7 +156,6 @@ def spotify_decr_vol():
 # ----------- PROGRAM START ------------ #
 
 
-localtime = datetime.datetime.now()
 print("Starting MagicMirror...")
 
 window = tk.Tk()
@@ -217,6 +209,7 @@ bat_range.grid(row=5, column=0, sticky=tk.N)
 # ----------- TIME ----------- #
 
 
+localtime = datetime.datetime.now()
 timestamp = tk.Label(window, text=localtime, font=("Helvetica", 25),
                      fg=TEXT_COLOR, bg=BGCOLOR)
 timestamp.grid(row=0, column=0, sticky=tk.N, columnspan=5)
@@ -229,27 +222,17 @@ weather_label = tk.Label(window, text="WEATHER", font=("Helvetica", 15),
                          fg=TEXT_COLOR, bg=BGCOLOR)
 weather_label.grid(row=1, column=1, padx=5, pady=5)
 
-default_weather_url = 'http://openweathermap.org/img/wn/01d.png'
-
 weather_icon_canvas = tk.Canvas(window, width=130, height=300, bg=BGCOLOR,
                                 highlightthickness=0)
 weather_icon_canvas.grid(row=3, column=1, sticky=tk.N, rowspan=3)
 
-try:
-    dwu_raw = urllib.request.urlopen(default_weather_url).read()
-    current_weather = Image.open(io.BytesIO(dwu_raw))
-    cw_image = ImageTk.PhotoImage(current_weather)
-except URLError:
-    print("Could not reach weather server...(Timeout)")
-    cw_image = ImageTk.PhotoImage(Image.open("/home/pi/github/magic_mirror/images/weather_icon.png"))
-except:
-    print("Could not reach weather server...")
+cw_image = ImageTk.PhotoImage(Image.open(WEATHER_ICON))
 
 weather_icon = weather_icon_canvas.create_image(50, 30, image=cw_image)
-weather_text = weather_icon_canvas.create_text(50, 90, text="Sunny",
+weather_text = weather_icon_canvas.create_text(50, 90, text="-",
                                                font=("Helvetica", 15),
                                                fill=TEXT_COLOR)
-weather_temperature = weather_icon_canvas.create_text(50, 115, text="0",
+weather_temperature = weather_icon_canvas.create_text(50, 115, text="-",
                                                       font=("Helvetica", 15),
                                                       fill=TEXT_COLOR)
 update_weather()
@@ -257,8 +240,6 @@ update_weather()
 
 # ----------- SPOTIFY  ----------- #
 
-spotify_volume = 50
-current_playback = LIVINGROOM_PLAYBACK_ID
 
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CLIENT_ID,
                                                client_secret=CLIENT_SECRET,
