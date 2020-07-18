@@ -209,9 +209,18 @@ def open_spotify_window(event):
     spotify_window.configure(background=BACKGROUND_COLOR)
     spotify_window.overrideredirect(True)
 
-    tesla_lbl = tk.Label(spotify_window, text="SPOTIFY", font=("Helvetica", 45),
-                         fg=TEXT_COLOR, bg=BGCOLOR)
-    tesla_lbl.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N, columnspan=5)
+    main_lbl = tk.Label(spotify_window, text="SPOTIFY", font=("Helvetica", 45),
+                        fg=TEXT_COLOR, bg=BGCOLOR)
+    main_lbl.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N, columnspan=5)
+
+    map_canvas = tk.Canvas(spotify_window, width=600, height=300, bg=BGCOLOR,
+                           highlightthickness=0)
+    map_canvas.grid(row=3, column=2, sticky=tk.N, rowspan=3)
+
+    get_map = urllib.requests.urlopen('https://maps.googleapis.com/maps/api/staticmap?center=Trondheim, Norway&zoom=11&size=600x300&maptype=roadmap&key=AIzaSyD6B7E-AxXFmEPU7nF2sEJtqO2g9eRZuPQ'.read())
+    open_map = Image.open(io.BytesIO(get_map))
+    map_image = ImageTk.PhotoImage(open_map)
+    google_map = map_canvas.create_image(600, 300, image=map_image)
 
     def close_tesla_window():
         spotify_window.destroy()
@@ -221,7 +230,6 @@ def open_spotify_window(event):
                             command=close_tesla_window, bg=BUTTON_BG_COLOR,
                             fg=BUTTON_TEXT_COLOR, relief=tk.RAISED)
     back_button.grid(row=8, column=0)
-
 
 
 # ----------- PROGRAM START ------------ #
