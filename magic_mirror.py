@@ -183,6 +183,47 @@ def open_tesla_window(event):
     back_button.grid(row=8, column=0)
 
 
+def open_weather_window(event):
+    weather_window = tk.Toplevel(window)
+    weather_window.geometry(SCREEN_RESOLUTION)
+    weather_window.configure(background=BACKGROUND_COLOR)
+    weather_window.overrideredirect(True)
+
+    tesla_lbl = tk.Label(weather_window, text="WEATHER", font=("Helvetica", 45),
+                         fg=TEXT_COLOR, bg=BGCOLOR)
+    tesla_lbl.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N, columnspan=5)
+
+    def close_tesla_window():
+        weather_window.destroy()
+        weather_window.update()
+
+    back_button = tk.Button(weather_window, text="BACK", height=5, width=8,
+                            command=close_tesla_window, bg=BUTTON_BG_COLOR,
+                            fg=BUTTON_TEXT_COLOR, relief=tk.RAISED)
+    back_button.grid(row=8, column=0)
+
+
+def open_spotify_window(event):
+    spotify_window = tk.Toplevel(window)
+    spotify_window.geometry(SCREEN_RESOLUTION)
+    spotify_window.configure(background=BACKGROUND_COLOR)
+    spotify_window.overrideredirect(True)
+
+    tesla_lbl = tk.Label(spotify_window, text="SPOTIFY", font=("Helvetica", 45),
+                         fg=TEXT_COLOR, bg=BGCOLOR)
+    tesla_lbl.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N, columnspan=5)
+
+    def close_tesla_window():
+        spotify_window.destroy()
+        spotify_window.update()
+
+    back_button = tk.Button(spotify_window, text="BACK", height=5, width=8,
+                            command=close_tesla_window, bg=BUTTON_BG_COLOR,
+                            fg=BUTTON_TEXT_COLOR, relief=tk.RAISED)
+    back_button.grid(row=8, column=0)
+
+
+
 # ----------- PROGRAM START ------------ #
 
 
@@ -264,6 +305,7 @@ weather_label.grid(row=1, column=1, padx=5, pady=5)
 weather_icon_canvas = tk.Canvas(window, width=130, height=300, bg=BGCOLOR,
                                 highlightthickness=0)
 weather_icon_canvas.grid(row=3, column=1, sticky=tk.N, rowspan=3)
+weather_icon_canvas.bind("<Button-1>", open_weather_window)
 
 cw_image = ImageTk.PhotoImage(Image.open(WEATHER_ICON))
 
@@ -309,6 +351,7 @@ spotify_status.grid(row=2, column=2, sticky=tk.N, columnspan=3)
 image = ImageTk.PhotoImage(Image.open(SPOTIFY_IMG))
 spotify_album_cover = Label(window, image=image)
 spotify_album_cover.grid(row=3, column=2, columnspan=3, rowspan=4)
+spotify_album_cover.bind("<Button-1>", open_spotify_window)
 
 
 spotify_song_title = tk.Label(window, text="-", font=("Helvetica", 11),
