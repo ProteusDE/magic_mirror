@@ -164,15 +164,24 @@ def spotify_decr_vol():
 
 
 def open_tesla_window(event):
-    print("Åpnet nytt vindu (tror jeg)")
     tesla_window = tk.Toplevel(window)
     tesla_window.geometry(SCREEN_RESOLUTION)
     tesla_window.configure(background=BACKGROUND_COLOR)
     tesla_window.overrideredirect(True)
 
-    tesla_label = tk.Label(tesla_window, text="TESLA", font=("Helvetica", 45),
-                           fg=TEXT_COLOR, bg=BGCOLOR)
-    tesla_label.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N)
+    tesla_lbl = tk.Label(tesla_window, text="TESLA", font=("Helvetica", 45),
+                         fg=TEXT_COLOR, bg=BGCOLOR)
+    tesla_lbl.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N, columnspan=5)
+
+    back_button = tk.Button(tesla_window, text="BACK", height=5, width=8,
+                            command=close_tesla_window, bg=BUTTON_BG_COLOR,
+                            fg=BUTTON_TEXT_COLOR, relief=tk.RAISED)
+    back_button.grid(row=2, column=0)
+
+
+def close_tesla_window():
+    tesla_window.destroy()
+    tesla_window.update()
 
 
 # ----------- PROGRAM START ------------ #
