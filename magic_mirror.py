@@ -180,6 +180,7 @@ def open_tesla_window(event):
 
 
 def close_tesla_window():
+    global tesla_window
     tesla_window.destroy()
     tesla_window.update()
 
