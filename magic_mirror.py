@@ -217,7 +217,7 @@ def open_spotify_window(event):
                            highlightthickness=0)
     map_canvas.grid(row=3, column=2, sticky=tk.N, rowspan=3)
 
-    get_map = requests.get('https://maps.googleapis.com/maps/api/staticmap?center=Trondheim, Norway&zoom=11&size=600x300&maptype=roadmap&key=AIzaSyD6B7E-AxXFmEPU7nF2sEJtqO2g9eRZuPQ')
+    get_map = urllib.request.urlopen('https://maps.googleapis.com/maps/api/staticmap?center=Trondheim, Norway&zoom=11&size=600x300&maptype=roadmap&key=AIzaSyD6B7E-AxXFmEPU7nF2sEJtqO2g9eRZuPQ'.read())
     open_map = Image.open(io.BytesIO(get_map))
     map_image = ImageTk.PhotoImage(open_map)
     google_map = map_canvas.create_image(600, 300, image=map_image)
