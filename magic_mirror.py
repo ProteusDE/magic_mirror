@@ -174,15 +174,13 @@ def open_tesla_window(event):
     tesla_lbl.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N, columnspan=5)
 
     back_button = tk.Button(tesla_window, text="BACK", height=5, width=8,
-                            command=close_tesla_window, bg=BUTTON_BG_COLOR,
+                            command=close, bg=BUTTON_BG_COLOR,
                             fg=BUTTON_TEXT_COLOR, relief=tk.RAISED)
     back_button.grid(row=2, column=0)
 
-
-def close_tesla_window():
-    global tesla_window
-    tesla_window.destroy()
-    tesla_window.update()
+    def close():
+        tesla_window.destroy()
+        tesla_window.update()
 
 
 # ----------- PROGRAM START ------------ #
