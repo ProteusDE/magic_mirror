@@ -162,8 +162,8 @@ def spotify_decr_vol():
     sp.volume(spotify_volume - 10)
     spotify_volume = spotify_volume - 10
 
-def spotify_play_on_device(event):
-    print("It works")
+def open_tesla_window(event):
+    tesla_window = tk.Toplevel(window)
 
 # ----------- PROGRAM START ------------ #
 
@@ -205,7 +205,7 @@ tesla_label.grid(row=1, column=0, padx=5, pady=5, sticky=tk.N)
 tesla_canv = tk.Canvas(window, width=300, height=120,
                        bg=BGCOLOR, highlightthickness=0)
 tesla_canv.grid(row=3, column=0, sticky=tk.N)
-tesla_canv.bind("<Button-1>", spotify_play_on_device)
+tesla_canv.bind("<Button-1>", open_tesla_window)
 
 tesla_logo = ImageTk.PhotoImage(Image.open(TESLA_IMG))
 tesla_img = tesla_canv.create_image(160, 60, image=tesla_logo)
@@ -225,6 +225,16 @@ temp_inside.grid(row=4, column=0, sticky=tk.S)
 temp_outside = tk.Label(window, text="Temperature outside: ",
                         fg=TEXT_COLOR, bg=BGCOLOR)
 temp_outside.grid(row=5, column=0, sticky=tk.N)
+
+
+# ------------- NEW TESLA WINDOW ---------------#
+
+tesla_label = tk.Label(tesla_window, text="TESLA", font=("Helvetica", 45),
+                       fg=TEXT_COLOR, bg=BGCOLOR)
+tesla_label.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N)
+
+
+
 
 
 # ----------- TIME ----------- #
