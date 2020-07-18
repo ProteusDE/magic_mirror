@@ -163,7 +163,7 @@ def spotify_decr_vol():
     spotify_volume = spotify_volume - 10
 
 
-def open_tesla_window(event):
+def open_tesla_window():
     print("Åpnet nytt vindu (tror jeg)")
     tesla_window = tk.Toplevel(window)
 
