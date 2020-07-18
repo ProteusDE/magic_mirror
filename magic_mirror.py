@@ -162,8 +162,14 @@ def spotify_decr_vol():
     sp.volume(spotify_volume - 10)
     spotify_volume = spotify_volume - 10
 
+
 def open_tesla_window(event):
     tesla_window = tk.Toplevel(window)
+
+    tesla_label = tk.Label(tesla_window, text="TESLA", font=("Helvetica", 45),
+                           fg=TEXT_COLOR, bg=BGCOLOR)
+    tesla_label.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N)
+
 
 # ----------- PROGRAM START ------------ #
 
@@ -225,16 +231,6 @@ temp_inside.grid(row=4, column=0, sticky=tk.S)
 temp_outside = tk.Label(window, text="Temperature outside: ",
                         fg=TEXT_COLOR, bg=BGCOLOR)
 temp_outside.grid(row=5, column=0, sticky=tk.N)
-
-
-# ------------- NEW TESLA WINDOW ---------------#
-
-tesla_label = tk.Label(tesla_window, text="TESLA", font=("Helvetica", 45),
-                       fg=TEXT_COLOR, bg=BGCOLOR)
-tesla_label.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N)
-
-
-
 
 
 # ----------- TIME ----------- #
