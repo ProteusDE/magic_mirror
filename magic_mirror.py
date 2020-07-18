@@ -163,10 +163,11 @@ def spotify_decr_vol():
     spotify_volume = spotify_volume - 10
 
 
-def open_tesla_window():
+def open_tesla_window(event):
     print("Åpnet nytt vindu (tror jeg)")
+    window.overrideredirect(False)
     tesla_window = tk.Toplevel(window)
-
+    tesla_window.overridedirect(True)
     tesla_label = tk.Label(tesla_window, text="TESLA", font=("Helvetica", 45),
                            fg=TEXT_COLOR, bg=BGCOLOR)
     tesla_label.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N)
@@ -182,7 +183,7 @@ window.title(TITLE)
 window.geometry(SCREEN_RESOLUTION)
 window.configure(background=BACKGROUND_COLOR)
 # The method overridedirect might have to be disabled during auth of Spotify
-window.overrideredirect(True)  # Make program run full screen mode
+window.overrideredirect(False)  # Make program run full screen mode
 
 
 window.columnconfigure(0, pad=3, weight=1)
@@ -213,9 +214,6 @@ tesla_canv = tk.Canvas(window, width=300, height=120,
                        bg=BGCOLOR, highlightthickness=0)
 tesla_canv.grid(row=3, column=0, sticky=tk.N)
 tesla_canv.bind("<Button-1>", open_tesla_window)
-
-t_btn = tk.Button(window, text="TESLA", command=open_tesla_window)
-t_btn.grid(row=8, column=0, sticky=tk.E)
 
 tesla_logo = ImageTk.PhotoImage(Image.open(TESLA_IMG))
 tesla_img = tesla_canv.create_image(160, 60, image=tesla_logo)
