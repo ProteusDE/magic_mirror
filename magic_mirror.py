@@ -180,7 +180,7 @@ def open_tesla_window(event):
     back_button = tk.Button(tesla_window, text="BACK", height=5, width=8,
                             command=close_tesla_window, bg=BUTTON_BG_COLOR,
                             fg=BUTTON_TEXT_COLOR, relief=tk.RAISED)
-    back_button.grid(row=2, column=0)
+    back_button.grid(row=8, column=0)
 
 
 # ----------- PROGRAM START ------------ #
