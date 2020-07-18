@@ -214,7 +214,7 @@ tesla_canv = tk.Canvas(window, width=300, height=120,
 tesla_canv.grid(row=3, column=0, sticky=tk.N)
 tesla_canv.bind("<Button-1>", open_tesla_window)
 
-t_btn = tk.Button(window, text="TESLA", command=open_tesla_window())
+t_btn = tk.Button(window, text="TESLA", command=open_tesla_window)
 
 tesla_logo = ImageTk.PhotoImage(Image.open(TESLA_IMG))
 tesla_img = tesla_canv.create_image(160, 60, image=tesla_logo)
