@@ -165,9 +165,11 @@ def spotify_decr_vol():
 
 def open_tesla_window(event):
     print("Åpnet nytt vindu (tror jeg)")
-    window.overrideredirect(False)
     tesla_window = tk.Toplevel(window)
-    tesla_window.overridedirect(True)
+    tesla_window.geometry(SCREEN_RESOLUTION)
+    tesla_window.configure(background=BACKGROUND_COLOR)
+    tesla_window.overrideredirect(True)
+
     tesla_label = tk.Label(tesla_window, text="TESLA", font=("Helvetica", 45),
                            fg=TEXT_COLOR, bg=BGCOLOR)
     tesla_label.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N)
@@ -183,7 +185,7 @@ window.title(TITLE)
 window.geometry(SCREEN_RESOLUTION)
 window.configure(background=BACKGROUND_COLOR)
 # The method overridedirect might have to be disabled during auth of Spotify
-window.overrideredirect(False)  # Make program run full screen mode
+window.overrideredirect(True)  # Make program run full screen mode
 
 
 window.columnconfigure(0, pad=3, weight=1)
