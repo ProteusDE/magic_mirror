@@ -11,6 +11,7 @@ REDIRECT_URI = os.environ.get('SPOTIPY_REDIRECT_URI')
 VIM = os.environ.get('VIM')
 WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
 TESLA_TOKEN = os.environ.get('TESLA_TOKEN')
+GOOGLE_MAPS_TOKEN = os.environ.get('GOOGLE_API')
 
 LAT = '63.43'			# Change this to your latitude
 LON = '10.39'			# Change this to your longditude
@@ -36,7 +37,7 @@ WEATHER_ICON = "/home/pi/github/magic_mirror/images/weather_icon.png"
 TESLA_IMG = '/home/pi/github/magic_mirror/images/tesla.jpg'
 TESLA_HEADERS = {'Content-Type': 'application/json', 'Authorization': f'Bearer {TESLA_TOKEN}'}
 TESLA_BASE_URL = f'https://owner-api.teslamotors.com/api/1/vehicles/{VIM}/'
-
+TESLA_CLIMATE_URL = '/api/1/vehicles/{id}/data_request/climate_state'
 
 # ----- SPOTIFY API --------#
 
