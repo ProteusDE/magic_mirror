@@ -329,6 +329,7 @@ update_weather()
 
 # ----------- SPOTIFY  ----------- #
 
+spotify_volume = 10
 
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CLIENT_ID,
                                                client_secret=CLIENT_SECRET,
