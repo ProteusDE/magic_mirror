@@ -189,16 +189,16 @@ def open_weather_window(event):
     weather_window.configure(background=BACKGROUND_COLOR)
     weather_window.overrideredirect(True)
 
-    tesla_lbl = tk.Label(weather_window, text="WEATHER", font=("Helvetica", 45),
+    weather_label = tk.Label(weather_window, text="WEATHER", font=("Helvetica", 45),
                          fg=TEXT_COLOR, bg=BGCOLOR)
-    tesla_lbl.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N, columnspan=5)
+    weather_label.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N, columnspan=5)
 
-    def close_tesla_window():
+    def close_weather_window():
         weather_window.destroy()
         weather_window.update()
 
     back_button = tk.Button(weather_window, text="BACK", height=5, width=8,
-                            command=close_tesla_window, bg=BUTTON_BG_COLOR,
+                            command=close_weather_window, bg=BUTTON_BG_COLOR,
                             fg=BUTTON_TEXT_COLOR, relief=tk.RAISED)
     back_button.grid(row=8, column=0)
 
