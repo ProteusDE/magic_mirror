@@ -214,7 +214,7 @@ def open_spotify_window(event):
     main_lbl.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N, columnspan=5)
 
     # map_canvas = tk.Canvas(spotify_window, width=600, height=300, bg=BGCOLOR,
-                           highlightthickness=0)
+    #                       highlightthickness=0)
     # map_canvas.grid(row=3, column=2, sticky=tk.N, rowspan=3)
 
     # get_map = urllib.request.urlopen(f'https://maps.googleapis.com/maps/api/staticmap?center=Trondheim, Norway&zoom=11&size=600x300&maptype=roadmap&key={GOOGLE_MAPS_TOKEN}'.read())
