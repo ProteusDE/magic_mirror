@@ -357,7 +357,7 @@ spotify_status = tk.Label(window, text="Playing status:", fg=TEXT_COLOR,
 spotify_status.grid(row=2, column=2, sticky=tk.N, columnspan=3)
 
 image = ImageTk.PhotoImage(Image.open(SPOTIFY_IMG))
-spotify_album_cover = Label(window, image=image)
+spotify_album_cover = tk.Label(window, image=image)
 spotify_album_cover.grid(row=3, column=2, columnspan=3, rowspan=4)
 spotify_album_cover.bind("<Button-1>", open_spotify_window)
 
