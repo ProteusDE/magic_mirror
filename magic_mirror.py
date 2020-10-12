@@ -213,14 +213,14 @@ def open_spotify_window(event):
                         fg=TEXT_COLOR, bg=BGCOLOR)
     main_lbl.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N, columnspan=5)
 
-    map_canvas = tk.Canvas(spotify_window, width=600, height=300, bg=BGCOLOR,
+    # map_canvas = tk.Canvas(spotify_window, width=600, height=300, bg=BGCOLOR,
                            highlightthickness=0)
-    map_canvas.grid(row=3, column=2, sticky=tk.N, rowspan=3)
+    # map_canvas.grid(row=3, column=2, sticky=tk.N, rowspan=3)
 
-    get_map = urllib.request.urlopen(f'https://maps.googleapis.com/maps/api/staticmap?center=Trondheim, Norway&zoom=11&size=600x300&maptype=roadmap&key={GOOGLE_MAPS_TOKEN}'.read())
-    open_map = Image.open(io.BytesIO(get_map))
-    map_image = ImageTk.PhotoImage(open_map)
-    google_map = map_canvas.create_image(600, 300, image=map_image)
+    # get_map = urllib.request.urlopen(f'https://maps.googleapis.com/maps/api/staticmap?center=Trondheim, Norway&zoom=11&size=600x300&maptype=roadmap&key={GOOGLE_MAPS_TOKEN}'.read())
+    # open_map = Image.open(io.BytesIO(get_map))
+    # map_image = ImageTk.PhotoImage(open_map)
+    # google_map = map_canvas.create_image(600, 300, image=map_image)
 
     def close_tesla_window():
         spotify_window.destroy()
