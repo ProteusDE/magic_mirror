@@ -63,6 +63,21 @@ def tesla_update():
     window.after(TESLA_CHECK_FREQUENCY, tesla_update)
 
 
+def get_geocode():
+    geo_response = requests.get(GOOGLE_ADR)
+
+    if geo_response.status_code == 200:
+        geo = json.loads(geo_response.content.decode('utf-8'))
+        lat = str(geo["results"]["geometry"]["location"]["lat"])
+        lon = str(geo["results"]["geometry"]["location"]["lon"])
+        print("Lat: " + lat + "\nLon: " + lon)
+
+    else:
+        print(geo_response.status_code)
+        print("Failed to get a response...")
+        return None
+
+
 def get_tesla_info():
     charge_url = TESLA_BASE_URL + 'data_request/charge_state/'
     ch_response = requests.get(charge_url, headers=TESLA_HEADERS)
@@ -305,6 +320,7 @@ timestamp.grid(row=0, column=0, sticky=tk.N, columnspan=5)
 
 # -----------  WEATHER INFO ----------- #
 
+get_geocode()
 
 weather_label = tk.Label(window, text="WEATHER", font=("Helvetica", 15),
                          fg=TEXT_COLOR, bg=BGCOLOR)

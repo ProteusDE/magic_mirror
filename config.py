@@ -13,8 +13,9 @@ WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
 TESLA_TOKEN = os.environ.get('TESLA_TOKEN')
 GOOGLE_MAPS_TOKEN = os.environ.get('GOOGLE_API')
 
-LAT = '63.43'			# Change this to your latitude
-LON = '10.39'			# Change this to your longditude
+ADDRESS = os.environ.get('ADDRESS')
+LAT = '63'			# Change this to your latitude
+LON = '10'			# Change this to your longditude
 
 
 # ------------- ALTER THESE CONSTANTS IF YOU'D PLEASE ------------------#
@@ -49,6 +50,12 @@ SCOPE = "user-read-playback-state,\
 PC_PLAYBACK_ID = '572e2c1bf0419b6f88c619c61ead7c1291976002'
 MOBILE_PLAYBACK_ID = 'eb95c22f8081a328257d4accf8cbabf1e8e73290'
 LIVINGROOM_PLAYBACK_ID = 'aedf617860060aeb536287250a2159a20b48c380'
+
+# ----- GOOGLE API --------#
+
+GOOGLE_ADR = 'https://maps.googleapis.com/maps/api/geocode/json?address={ADDRESS}&key={GOOGLE_MAPS_TOKEN}'
+
+
 
 # --------------- COLOR THEME ----------------#
 
