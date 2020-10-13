@@ -68,9 +68,9 @@ def get_geocode():
 
     if geo_response.status_code == 200:
         geo = json.loads(geo_response.content.decode('utf-8'))
-        lat = geo["results"][0]["geometry"]["location"]["lat"]
-        lon = geo["results"][0]["geometry"]["location"]["lon"]
-        print("Lat: " + lat + "\nLon: " + lon)
+        #lat = geo["results"][0]["geometry"]["location"]["lat"]
+        #lon = geo["results"][0]["geometry"]["location"]["lon"]
+        #print("Lat: " + lat + "\nLon: " + lon)
 
     else:
         print(geo_response.status_code)
