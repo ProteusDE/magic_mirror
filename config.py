@@ -23,9 +23,9 @@ LON = '10'			# Change this to your longditude
 TITLE = "MagicMirror"
 SCREEN_RESOLUTION = '800x480'
 
-GUI_UPDATE_FREQUENCY = 1000		# Update GUI every 200 ms
+GUI_UPDATE_FREQUENCY = 1000		# Update GUI every second
 TESLA_CHECK_FREQUENCY = 900000  # Update Tesla info every 15 min
-WEATHER_FREQUENCY = 1800000		# Update GUI every half hour
+WEATHER_FREQUENCY = 1800000		# Update weather forecast every half hour
 
 # ----- WEATHER API --------#
 
