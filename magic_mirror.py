@@ -9,6 +9,7 @@ from PIL import ImageTk, Image
 import urllib.request
 import io
 import spotipy
+from spotipy import Spotify
 from spotipy.oauth2 import SpotifyOAuth
 from config import *
 
