@@ -45,8 +45,8 @@ TESLA_CLIMATE_URL = '/api/1/vehicles/{id}/data_request/climate_state'
 SPOTIFY_BASE_URL = 'https://api.spotify.com/v1/me/'
 PLAYING_ID = ''
 SPOTIFY_IMG = '/home/pi/github/magic_mirror/images/spotify_logo.png'
-SCOPE = "user-read-playback-state,\
-         user-modify-playback-state,user-library-read"
+SCOPE = 'app-remote-control','user-library-modify','user-modify-playback-state','user-library-read','user-read-playback-state','user-read-private','user-read-email','user-library-read','user-read-currently-playing','user-read-playback-position'
+
 PC_PLAYBACK_ID = '572e2c1bf0419b6f88c619c61ead7c1291976002'
 MOBILE_PLAYBACK_ID = 'eb95c22f8081a328257d4accf8cbabf1e8e73290'
 LIVINGROOM_PLAYBACK_ID = 'aedf617860060aeb536287250a2159a20b48c380'
